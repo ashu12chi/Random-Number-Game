@@ -1,0 +1,182 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class Program implements ActionListener{
+     JFrame f,f2,f3;
+     JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10;
+     JButton b1,b2,b3,b4,b5,b6,b7;
+     Font f1;
+     final int n = (int)(Math.random()*10);
+     final int n1 = (int)(Math.random()*10);
+     final int n2 = (int)(Math.random()*10);
+     final int n3 = (int)(Math.random()*10);
+     Program()
+     {
+         f = new JFrame("Random Number Game");
+         f2 = new JFrame("Number Selection");
+         f3 = new JFrame("Winner Decleration");
+         lb1 = new JLabel("Target Number:");
+         lb2 = new JLabel("Empty");
+         b1 = new JButton("Click");
+         b3 = new JButton("Click");
+         b4 = new JButton("Click");
+         b5 = new JButton("Click");
+         b6 = new JButton("Compare");
+         b7 = new JButton("Game Over");
+         b2 = new JButton("Continue");
+         lb3 = new JLabel("Player 1");
+         lb4 = new JLabel("Player 2");
+         lb5 = new JLabel("Player 3");
+         lb6 = new JLabel("Click to select number for Players.");
+         lb7 = new JLabel("");
+         lb8 = new JLabel("");
+         lb9 = new JLabel("");
+         lb10 = new JLabel("");
+         f1 = new Font("Arial", 1, 30);
+         f.setLayout(null);
+         f2.setLayout(null);
+         f3.setLayout(null);
+         lb1.setFont(f1);
+         lb2.setFont(f1);
+         lb3.setFont(f1);
+         lb4.setFont(f1);
+         lb5.setFont(f1);
+         lb6.setFont(f1);
+         lb7.setFont(f1);
+         lb8.setFont(f1);
+         lb9.setFont(f1);
+         lb10.setFont(f1);
+         b1.setFont(f1);
+         b2.setFont(f1);
+         b3.setFont(f1);
+         b4.setFont(f1);
+         b5.setFont(f1);
+         b6.setFont(f1);
+         b7.setFont(f1);
+         lb1.setBounds(270,300,230,50);
+         lb2.setBounds(510,300,300,50);
+         lb3.setBounds(40,50,200,50);
+         lb4.setBounds(270,50,200,50);
+         lb5.setBounds(500,50,200,50);
+         lb6.setBounds(80,200,600,50);
+         lb7.setBounds(80,270,600,50);
+         lb8.setBounds(80,340,600,50);
+         lb9.setBounds(80,410,600,50);
+         lb10.setBounds(50,200,500,50);
+         b1.setBounds(380,400,150,50);
+         b2.setBounds(355,460,200,50);
+         b3.setBounds(10,110,200,50);
+         b4.setBounds(240,110,200,50);
+         b5.setBounds(470,110,200,50);
+         b6.setBounds(200,490,200,50);
+         b7.setBounds(80,270,200,50);
+         b1.addActionListener(this);
+         b3.addActionListener(this);
+         b4.addActionListener(this);
+         b5.addActionListener(this);
+         b6.addActionListener(this);
+         
+         
+         f.add(lb1);
+         f.add(lb2);
+         f2.add(lb3);
+         f2.add(lb4);
+         f2.add(lb5);
+         f2.add(lb6);
+         f2.add(lb7);
+         f2.add(lb8);
+         f2.add(lb9);
+         f3.add(lb10);
+         f.add(b1);
+         f.add(b2);
+         f2.add(b3);
+         f2.add(b4);
+         f2.add(b5);
+         f2.add(b6);
+         f3.add(b7);
+         f.setResizable(false);
+         f.setVisible(true);
+         f.setSize(900,900);
+         f2.setResizable(false);
+         f2.setVisible(false);
+         f2.setSize(700,700);
+         f3.setResizable(false);
+         f3.setVisible(false);
+         f3.setSize(500,500);
+         
+     }
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==b1)
+        {
+            
+            lb2.setText("Number selected is " + String.valueOf(n));
+            b2.addActionListener(this);
+        }
+        if(e.getSource()==b2)
+        {
+            f2.setVisible(true);
+        }
+        if(e.getSource()==b3)
+        {
+             
+            lb7.setText("Player 1 selected number " + String.valueOf(n1));
+        }
+        if(e.getSource()==b4)
+        {
+            
+            lb8.setText("Player 2 selected number " + String.valueOf(n2));
+        }
+        if(e.getSource()==b5)
+        {
+            
+            lb9.setText("Player 3 selected number " + String.valueOf(n3));
+        }
+        if(e.getSource()==b6)
+        {
+            if(n1==n2 || n2==n3 || n3==n1)
+            {
+                f2.dispose();
+                b7.addActionListener(this);
+                f3.setVisible(true);
+                lb10.setText("No one is winner.");
+            }
+            else if(n1==n || n2==n || n3==n)
+            {
+                f2.dispose();
+                b7.addActionListener(this);
+                if(n1==n)
+                {
+                    f3.setVisible(true);
+                    lb10.setText("Winner of the game is Player 1.");
+                }
+                if(n2==n)
+                {
+                    f3.setVisible(true);
+                    lb10.setText("Winner of the game is Player 2.");
+                }
+                if(n3==n)
+                {
+                    f3.setVisible(true);
+                    lb10.setText("Winner of the game is Player 3.");
+                }
+            }
+            else
+            {
+                f2.dispose();
+                b7.addActionListener(this);
+                f3.setVisible(true);
+                lb10.setText("No one is winner.");
+            }
+        }
+        if(e.getSource()==b7)
+        {
+            f3.dispose();
+            f.dispose();
+        }
+    }
+    public static void main(String ar[])
+    {
+        Program p = new Program();
+    }
+}
